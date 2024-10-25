@@ -8,6 +8,7 @@ using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
+using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitHub;
 using Nuke.Common.Tools.MinVer;
@@ -58,21 +59,9 @@ class Build : NukeBuild
         .Requires(() => Configuration.Equals(Configuration.Release))
         .Executes(() =>
         {
-            DotNetPublish(x => x
-                .SetProject(Solution.Platfroms.HolyClient_Desktop)
-                .SetConfiguration(Configuration)
-                .SetPublishSingleFile(true)
-                .SetProperty("DebugSymbols", "False")
-                .SetProperty("DebugType", "None")
-                .SetPublishReadyToRun(true)
-                .EnableSelfContained()
-                .SetAssemblyVersion(MinVer.AssemblyVersion)
-                .SetFileVersion(MinVer.FileVersion)
-                .SetOutput(BuildDirectory)
-                .SetFramework("net9.0")
-                .SetRuntime(Runtime));
             
-            
+
+
         });
 
 }
