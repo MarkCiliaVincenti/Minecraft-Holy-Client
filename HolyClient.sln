@@ -49,10 +49,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProxyLib", "ProxyLib", "{7A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickProxyNet", "src\QuickProxyNet\QuickProxyNet.csproj", "{061F3DDC-1CF0-40CD-9DD8-697B95F782F1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{6D56912F-F95F-498D-806A-C0235801020A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Props", "Props", "{94507341-EE19-4C7A-8C97-1906CB80A567}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "McProtoNet.Benchmark", "src\McProtoNet\McProtoNet.Benchmark\McProtoNet.Benchmark.csproj", "{B20035DA-21E0-4BFA-B31A-B0D8A520D117}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourceGenerator", "src\McProtoNet\SourceGenerator\SourceGenerator.csproj", "{1826F0CF-C719-457B-9D88-F9C05C433B36}"
@@ -75,12 +71,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandBoxStressTest", "src\Sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandboxProxy", "src\Sandbox\SandboxProxy\SandboxProxy.csproj", "{C26D4BA0-EB02-4E4F-AB81-D6C054C2922F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{ABCF9A48-1E44-4DF8-A42E-DBF3C2B5D851}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABCF9A48-1E44-4DF8-A42E-DBF3C2B5D851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABCF9A48-1E44-4DF8-A42E-DBF3C2B5D851}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77942BEA-EB0E-47D3-A74A-377E0BA1AA90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{77942BEA-EB0E-47D3-A74A-377E0BA1AA90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77942BEA-EB0E-47D3-A74A-377E0BA1AA90}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -141,8 +141,6 @@ Global
 		{061F3DDC-1CF0-40CD-9DD8-697B95F782F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{061F3DDC-1CF0-40CD-9DD8-697B95F782F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{061F3DDC-1CF0-40CD-9DD8-697B95F782F1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D56912F-F95F-498D-806A-C0235801020A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D56912F-F95F-498D-806A-C0235801020A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B20035DA-21E0-4BFA-B31A-B0D8A520D117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B20035DA-21E0-4BFA-B31A-B0D8A520D117}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B20035DA-21E0-4BFA-B31A-B0D8A520D117}.Release|Any CPU.ActiveCfg = Release|Any CPU

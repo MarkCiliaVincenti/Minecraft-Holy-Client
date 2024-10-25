@@ -20,3 +20,15 @@ jobs:
         with:
           dotnet-version: 9.x
       - run: dotnet --version
+        
+      - name: set shell script permissions
+        if: ${{ matrix.os != 'windows-latest'}}
+        run: chmod +x ./build.sh
+
+      - name: build (Unix)
+        if: ${{ matrix.os != 'windows-latest'}}
+        run: ./build.sh DevBuild --Configuration Release --Runtime linux-x64
+
+      - name: build (Windows)
+        if: ${{ matrix.os == 'windows-latest'}}
+        run: .\build.ps1 DevBuild --Configuration Release --Runtime win-x64
