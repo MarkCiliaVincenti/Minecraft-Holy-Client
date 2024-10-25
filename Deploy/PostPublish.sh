@@ -22,7 +22,7 @@ mkdir -p "${BUILD_APP_BIN}/subdir"
 touch "${BUILD_APP_BIN}/subdir/file.test"
 set +x #echo off
 
-ls "/tmp/KuiperZone.PupNet/titlehhhh.holyclient-linux-x64-Release-Deb/AppDir/opt/titlehhhh.holyclient/"
+# ls "/tmp/KuiperZone.PupNet/titlehhhh.holyclient-linux-x64-Release-Deb/AppDir/opt/titlehhhh.holyclient/"
 
 echo
 echo "==========================="
