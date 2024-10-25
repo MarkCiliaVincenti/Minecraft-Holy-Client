@@ -34,4 +34,11 @@ jobs:
       
       - name: Run pupnet
         if: ${{ matrix.os == 'ubuntu-latest'}}
-        run: pupnet --runtime linux-x64 --kind deb
+        run: pupnet --runtime linux-x64 --kind deb --output "HolyClient.Desktop-x64.deb"
+        
+      - name: Upload Deb
+        if: ${{ matrix.os == 'ubuntu-latest'}}
+        uses: actions/upload-artifact@v4
+        with: 
+          name: 'Linux-x64'
+          path: 'Deploy/bin/HolyClient.Desktop-x64.deb'
