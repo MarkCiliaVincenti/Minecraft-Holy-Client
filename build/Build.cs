@@ -65,6 +65,7 @@ class Build : NukeBuild
                 .SetProperty("DebugSymbols", "False")
                 .SetProperty("DebugType", "None")
                 .SetPublishReadyToRun(true)
+                .SetNoRestore(true)
                 .EnableSelfContained()
                 .SetAssemblyVersion(MinVer.AssemblyVersion)
                 .SetFileVersion(MinVer.FileVersion)
