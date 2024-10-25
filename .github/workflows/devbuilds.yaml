@@ -32,4 +32,4 @@ jobs:
       
       - name: Run pupnet
         if: ${{ matrix.os == 'ubuntu-latest'}}
-        run: pupnet --runtime linux-64 --kind deb --app-version 4.0.0[1]
+        run: pupnet --runtime linux-64 --kind deb
