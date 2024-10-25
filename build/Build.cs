@@ -69,7 +69,7 @@ class Build : NukeBuild
                 .SetAssemblyVersion(MinVer.AssemblyVersion)
                 .SetFileVersion(MinVer.FileVersion)
                 .SetOutput(BuildDirectory)
-                .SetFramework("net8.0")
+                .SetFramework("net9.0")
                 .SetRuntime(Runtime));
             
             
