@@ -27,6 +27,7 @@ jobs:
       - name: Install Pupnet and dpkg
         if: ${{ matrix.os == 'ubuntu-latest'}}
         run: |
+          chmod +x Deploy/PostBuild.sh
           dotnet tool install -g KuiperZone.PupNet
           sudo apt install dpkg         
       
