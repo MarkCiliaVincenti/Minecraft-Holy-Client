@@ -24,4 +24,8 @@ jobs:
       - run: dotnet --version
       
       - name: Dotnet publish
-        run: dotnet publish -r ${{matrix.rid}} --self-contained -p:PublishSingleFile=true src/Platforms/HolyClient.Desktop
+        run: dotnet publish -r ${{matrix.rid}} --self-contained -p:PublishSingleFile=true --output buildDir src/Platforms/HolyClient.Desktop
+        
+      - name: Upload artifact
+        run: dir
+          
