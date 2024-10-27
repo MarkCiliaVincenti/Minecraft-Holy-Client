@@ -11,7 +11,7 @@ public sealed class MinecraftPacketReader
     private static readonly MemoryAllocator<byte> memoryAllocator = ArrayPool<byte>.Shared.ToAllocator();
 
 
-    private int _compressionThreshold=-1;
+    private int _compressionThreshold = -1;
 
     public Stream BaseStream { get; set; }
 
@@ -25,7 +25,7 @@ public sealed class MinecraftPacketReader
     public async ValueTask<InputPacket> ReadNextPacketAsync(CancellationToken token = default)
     {
         var len = await BaseStream.ReadVarIntAsync(token);
-        if (_compressionThreshold<0)
+        if (_compressionThreshold < 0)
         {
             var buffer = memoryAllocator.AllocateExactly(len);
             try
@@ -39,6 +39,7 @@ public sealed class MinecraftPacketReader
                 throw;
             }
         }
+
         var sizeUncompressed = await BaseStream.ReadVarIntAsync(token);
         if (sizeUncompressed > 0)
         {
@@ -46,18 +47,16 @@ public sealed class MinecraftPacketReader
                 throw new Exception(
                     $"Длина sizeUncompressed меньше порога сжатия. sizeUncompressed: {sizeUncompressed} Порог: {_compressionThreshold}");
             len -= sizeUncompressed.GetVarIntLength();
-            var buffer_compress = ArrayPool<byte>.Shared.Rent(len);
+
+            var compressedBuffer = memoryAllocator.AllocateExactly(len);
+
             try
             {
-                await BaseStream.ReadExactlyAsync(buffer_compress, 0, len, token);
-
-
-                var memoryOwner = new MemoryOwner<byte>(ArrayPool<byte>.Shared, sizeUncompressed);
+                await BaseStream.ReadExactlyAsync(compressedBuffer.Memory, token);
+                var memoryOwner = memoryAllocator.AllocateExactly(sizeUncompressed);
                 try
                 {
-                    DecompressCore(buffer_compress.AsSpan(0, len), memoryOwner.Span);
-
-
+                    DecompressCore(compressedBuffer.Span, memoryOwner.Span);
                     return new InputPacket(memoryOwner);
                 }
                 catch
@@ -68,7 +67,7 @@ public sealed class MinecraftPacketReader
             }
             finally
             {
-                ArrayPool<byte>.Shared.Return(buffer_compress);
+                compressedBuffer.Dispose();
             }
         }
 
@@ -94,7 +93,6 @@ public sealed class MinecraftPacketReader
     private static void DecompressCore(ReadOnlySpan<byte> bufferCompress, Span<byte> uncompress)
     {
         var decompressor = new ZlibDecompressor();
-        //var decompressor = LibDeflateCache.RentDecompressor();
         try
         {
             var status = decompressor.Decompress(
@@ -113,7 +111,5 @@ public sealed class MinecraftPacketReader
     public void EnableCompression(int threshold)
     {
         _compressionThreshold = threshold;
-       
     }
-
 }

@@ -1,5 +1,4 @@
 name: dev-builds
-# This workflow represents a set of basic End-to-End tests
 on:
   push:
     branches:
@@ -9,36 +8,20 @@ on:
 
 jobs:
 
-  basic:
-    runs-on: ${{ matrix.os }}
+  windows-builds:
+    runs-on: windows-latest
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]        
+        rid: [ win-x86, win-x64, win-arm64 ]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.x
       - run: dotnet --version
       
-      - name: Install Pupnet and dpkg
-        if: ${{ matrix.os == 'ubuntu-latest'}}
-        run: |
-          ls Deploy
-          chmod +x Deploy/PostPublish.sh
-          dotnet tool install -g KuiperZone.PupNet
-          sudo apt install dpkg         
-      
-      - name: Run pupnet
-        if: ${{ matrix.os == 'ubuntu-latest'}}
-        run: pupnet --runtime linux-x64 --kind deb --output "HolyClient.Desktop-x64.deb"
-        
-      - name: Upload Deb
-        if: ${{ matrix.os == 'ubuntu-latest'}}
-        uses: actions/upload-artifact@v4
-        with: 
-          name: 'Linux-x64'
-          path: 'Deploy/bin/HolyClient.Desktop-x64.deb'
+      - name: Dotnet publish
+        run: dotnet publish -r ${{matrix.rid}} --self-contained -p:PublishSingleFile=true src/Platforms/HolyClient.Desktop
