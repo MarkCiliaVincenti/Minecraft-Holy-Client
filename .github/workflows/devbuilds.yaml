@@ -50,6 +50,8 @@ jobs:
       - name: Dotnet publish
         run: dotnet publish -r ${{matrix.rid}} --self-contained -p:PublishSingleFile=true -p:DebugType=None -p:DebugSymbols=false --output buildDir src/Platforms/HolyClient.Desktop
 
+      - run: chmod +x ./buildDir/HolyClient.Desktop
+        
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
