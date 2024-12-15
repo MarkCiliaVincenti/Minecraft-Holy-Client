@@ -13,7 +13,7 @@ namespace HolyClient.Localization;
 /// </summary>
 public class Loc : ReactiveObject
 {
-    private static readonly object lockObject = new();
+    private static readonly System.Threading.Lock lockObject = new();
 
     private static Loc instance;
 

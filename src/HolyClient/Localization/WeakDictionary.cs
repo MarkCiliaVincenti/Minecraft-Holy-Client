@@ -11,7 +11,7 @@ internal class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDispos
     where TKey : class
     where TValue : class
 {
-    private readonly object locker = new();
+    private readonly Lock locker = new();
 
     private bool bAlive = true;
     private ConditionalWeakTable<TKey, WeakKeyHolder> keyHolderMap = new();

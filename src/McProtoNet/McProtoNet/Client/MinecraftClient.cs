@@ -10,11 +10,7 @@ namespace McProtoNet.Client;
 
 public sealed class MinecraftClient : Disposable, IPacketBroker
 {
-#if NET9_0_OR_GREATER
     private readonly System.Threading.Lock _gate = new();
-#else
-    private readonly object _gate = new();
-#endif
     private volatile int _state;
 
     private volatile int _isActive;

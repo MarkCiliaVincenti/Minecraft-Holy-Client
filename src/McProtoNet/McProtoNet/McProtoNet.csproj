@@ -12,6 +12,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+		<PackageReference Condition="!$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net9.0'))" Include="Backport.System.Threading.Lock" Version="3.1.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>analyzers</IncludeAssets>
+		</PackageReference>		
         <PackageReference Include="ConfigureAwait.Fody" Version="3.3.2"/>
         <PackageReference Include="DotNext.IO" Version="5.14.0" />
         <PackageReference Include="DotNext.Threading" Version="5.15.0" />
